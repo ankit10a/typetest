@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript Set S1#15</title>
+</head>
+<body><center>
+	<h3>Check your typing skill</h3>
+	<input type="radio" name="level" onchange="change(this)" value="My first Sentence" >Begineer
+	<input type="radio" name="level" onchange="change(this)" value="My typing is better now">Novice
+	<input type="radio" name="level" onchange="change(this)" value="I can type fast now. I am very happy">Expert
+	<br/>
+	<h3>Type the following Text</h3>
+	<div id="txt"></div>
+	<input type="text" id="entertxt">
+	<div>
+            <div>
+                <button onclick="start()">Start</button>
+                <button onclick="stop()">Stop</button>
+            </div>
+            <div>Time : <span id="sec">0</span>.<span id="milisec">000</span></div>
+     </center>      
+</body>
+<script type="text/javascript">
+	var typetxt = document.getElementById('txt');
+	var entxt = document.getElementById('entertxt');
+	var txt ="";
+	function change(ele) {
+		if(x){
+			clearInterval(x);
+			reset();
+			document.getElementById("milisec").innerHTML = "000";
+  			document.getElementById("sec").innerHTML = "0";
+
+		}
+		typetxt.innerHTML = "<h3>"+ele.value+"</h3>" ;
+		txt = ele.value;
+	}
+	var x;
+	var sec = document.getElementById('seconds');
+	var centisec = document.getElementById('centiseconds');
+	function start() {
+			reset();
+		x = setInterval(timer, 0);
+	} 
+
+	function stop() {
+	var time = sec+"."+milisec;
+	var Time = +time;
+	var msg ="";
+		if(entxt.value==txt)
+		msg = "Your text is correct . You took "+Time;
+		else{
+		 	msg ="your text is not correct";
+		 }	
+		 console.log(sec,secOut,milisec,miliSecOut,Time);
+		  clearInterval(x);
+		alert(msg);
+	  
+	} 
+var milisec = 0;
+var sec = 0; 
+var miliSecOut = 0;
+var secOut = 0;
+
+function timer() {
+  miliSecOut = checkTime(milisec);
+  secOut = checkTime(sec);
+ 
+  milisec = ++milisec;
+
+  if (milisec == 1000) {
+    milisec = 0;
+    sec = ++sec;
+  }
+  document.getElementById("milisec").innerHTML = milisec;
+  document.getElementById("sec").innerHTML = sec;
+  console.log(sec,secOut,milisec,miliSecOut);
+  }
+  function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+function reset() {
+  milisec = 0;
+  sec = 0;
+}
+</script>
+</html>
